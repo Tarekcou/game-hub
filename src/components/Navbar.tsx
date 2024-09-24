@@ -1,0 +1,12 @@
+import { HStack, Image, Text } from "@chakra-ui/react";
+import logo from "../assets/logo.jpeg";
+const Navbar = () => {
+  return (
+    <HStack spacing="5" marginLeft="5">
+      <Image src={logo} boxSize="60px" />
+      <Text>Navbar</Text>
+    </HStack>
+  );
+};
+
+export default Navbar;
