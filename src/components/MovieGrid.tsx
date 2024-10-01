@@ -1,36 +1,22 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-
-interface Products {
-  id: number;
-  brand_owner: string;
-  brands: string;
-  countries_imported: string;
-  generic_name: string;
-  ingredients_text: string;
-  image_front_small_url: string;
-}
-interface FetchGamesResponse {
-  id: number;
-  // results: Games[];
-}
+import { SimpleGrid, Text } from "@chakra-ui/react";
+import useMovies from "../hooks/useMovies";
+import GameCard from "./GameCard";
 const GameGrid = () => {
-  const [games, setGames] = useState([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get("https://world.openfoodfacts.org/api/v3/product/737628064502.json")
-      .then((res) => console.log(res.data.product.brand_owner))
-      .catch((err) => setError(err.message));
-  });
+  const { movies, error } = useMovies();
   // console.log(games);
   return (
-    <ul>
-      {/* {games.map((game) => (
-        <li key={game.id}>{game.name}</li>
-      ))} */}
-    </ul>
+    <>
+      {error && <Text>{error}</Text>}
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        spacing={10}
+        padding={10}
+      >
+        {movies.map((movie) => (
+          <GameCard key={movie.id} movies={movie} />
+        ))}
+      </SimpleGrid>
+    </>
   );
 };
 
