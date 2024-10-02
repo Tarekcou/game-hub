@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import Language from "./Language";
 import Rating from "./Rating";
+import getCroppedImageUrl from "../services/image-url";
 
 interface Props {
   movies: Movies;
@@ -18,16 +19,15 @@ interface Props {
 
 const GameCard = ({ movies }: Props) => {
   return (
-    <Card>
+    <Card border={"red"} overflow={"hidden"} rounded={"xl"}>
       <Image
-        src={`https://image.tmdb.org/t/p/w300/${movies.poster_path}
-`}
-        overflow={"hidden"}
-        rounded={"xl"}
+        height={"250px"}
+        src={getCroppedImageUrl(`https://image.tmdb.org/t/p/${movies.poster_path}
+`)}
       />
-      <CardBody>
+      <CardBody padding={"5px"} paddingBottom={"5px"}>
         <Stack>
-          <Heading textAlign={"center"} fontSize={"2xl"}>
+          <Heading textAlign={"center"} fontSize={"xl"}>
             {movies.title}
           </Heading>
           <HStack justifyContent={"space-between"}>
