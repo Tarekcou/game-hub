@@ -21,7 +21,7 @@ const GameCard = ({ movies }: Props) => {
   return (
     <Card border={"red"} overflow={"hidden"} rounded={"xl"}>
       <Image
-        height={"250px"}
+        // height={"250px"}
         src={getCroppedImageUrl(`https://image.tmdb.org/t/p/${movies.poster_path}
 `)}
       />
